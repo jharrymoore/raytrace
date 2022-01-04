@@ -14,8 +14,8 @@ fn main() {
 	let json = fs::read(&args[1]).expect("Failed to read file");
 
 	// the enetire scene is configured in the json
-	let scene = serde_json::from_slice::<Config>(&json).expect("couldn't parse json config file");
+	let scene: Config = serde_json::from_slice(&json).expect("couldn't parse json config file");
 	let filename = &args[2];
-	println!("Rendering {}", filename);
+	println!("\nRendering {}", filename);
 	render(&filename, scene)
 }

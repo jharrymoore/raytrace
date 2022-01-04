@@ -4,7 +4,7 @@
 	"samples_per_pixel": 128,
 	"max_depth": 50,
 	"sky": {
-		"texture": "~/projects/raytrace/data/beach.jpg"
+		"texture":"data/beach.jpg"
 	},
 	"camera": {
 		"look_from": {
@@ -34,13 +34,13 @@
 			},
 			"radius": 0.5,
 			"material": {
-				"Texture": {
+				"Glass": {
 					"albedo": [
 						1.0,
 						1.0,
 						1.0
 					],
-					"pixels": "earth.jpg",
+					"pixels": "data/earth.jpg",
 					"width": 2048,
 					"height": 1024,
 					"h_offset": 0.75
