@@ -1,7 +1,9 @@
+use serde::{Serialize, Deserialize};
+
 use crate::point3d::Point3D;
 use crate::material::Material;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub struct Ray {
 	pub origin: Point3D,
 	pub direction: Point3D,
@@ -9,7 +11,7 @@ pub struct Ray {
 
 
 impl Ray {
-	fn new(origin: Point3D, direction: Point3D) -> Ray {
+	pub fn new(origin: Point3D, direction: Point3D) -> Ray {
 		Ray{origin, direction}
 	}
 
@@ -18,13 +20,13 @@ impl Ray {
 	}
 }
 
-pub struct HitRecord<'Material> {
+pub struct HitRecord<'material> {
 	pub t: f64,
 	pub point: Point3D,
 	pub normal: Point3D,
 	pub front_face: bool,
 	pub material: &'material Material,
-	pub u: u64,
+	pub u: f64,
 	pub v: f64,
 }
 

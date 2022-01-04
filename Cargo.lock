@@ -211,7 +211,7 @@ dependencies = [
  "byteorder",
  "enum_primitive",
  "gif",
- "jpeg-decoder",
+ "jpeg-decoder 0.1.22",
  "num-iter",
  "num-rational",
  "num-traits 0.1.43",
@@ -236,6 +236,15 @@ name = "jpeg-decoder"
 version = "0.1.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "229d53d58899083193af11e15917b5640cd40b29ff475a1fe4ef725deb02d0f2"
+dependencies = [
+ "rayon",
+]
+
+[[package]]
+name = "jpeg-decoder"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fbcf0244f6597be39ab8d9203f574cafb529ae8c698afa2182f7b3c3205a4a9c"
 dependencies = [
  "rayon",
 ]
@@ -506,6 +515,7 @@ name = "raytrace"
 version = "0.1.0"
 dependencies = [
  "image",
+ "jpeg-decoder 0.2.1",
  "palette",
  "rand",
  "rayon",

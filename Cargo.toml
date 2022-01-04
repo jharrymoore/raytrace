@@ -11,5 +11,6 @@ serde_with = "1.9.4"
 rayon= "1"
 rand = "0.8.4"
 serde = { version = "1.0", features = ["derive"] }
+jpeg-decoder = "0.2.1"
 image = "0.13.0"
 palette = "0.6.0"

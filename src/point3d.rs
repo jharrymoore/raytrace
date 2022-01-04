@@ -34,6 +34,10 @@ impl Point3D {
 			}
 		}
 	}
+	pub fn length(&self) -> f64 {
+		self.length_squared().sqrt()
+	}
+
 	pub fn length_squared(&self) -> f64 {
 		self.x * self.x + self.y * self.y + self.z * self.z
 	}
@@ -44,6 +48,35 @@ impl Point3D {
 		let dz = self.z - other.z;
 		(dx * dx + dy * dy + dz * dz).sqrt()
 	}
+	pub fn near_zero(&self) -> bool {
+		self.x.abs() < f64::EPSILON && self.y.abs() < f64::EPSILON && self.z.abs() < f64::EPSILON
+	}
+
+	pub fn dot(&self, other: &Point3D) -> f64 {
+		self.x * other.x + self.y * other.y + self.z * other.z
+	}
+	pub fn cross(&self, other: &Point3D) -> Point3D {
+		Point3D::new(
+			self.y * other.z - self.z * other.y,
+			self.z * other.x - self.x * other.z,
+			self.x * other.y - self.y * other.x,
+		)
+	}
+	pub fn unit_vector(&self) -> Point3D {
+		let length = self.length();
+		Point3D::new(self.x / length, self.y / length, self.z / length)
+	}
+	pub fn x(&self) -> f64 {
+		self.x
+	}
+
+	pub fn y(&self) -> f64 {
+		self.y
+	}
+	pub fn z(&self) -> f64 {
+		self.z
+	}
+	
 }
 
 
@@ -80,13 +113,49 @@ impl Mul<Point3D> for Point3D {
 	}
 }
 
-impl Div for Point3D {
+impl Mul<f64> for Point3D {
+    type Output = Point3D;
+
+    fn mul(self, other: f64) -> Point3D {
+        Point3D {
+            x: self.x * other,
+            y: self.y * other,
+            z: self.z * other,
+        }
+    }
+}
+
+impl Div<Point3D> for Point3D {
 	type Output = Point3D;
 	fn div(self, other: Point3D) -> Point3D { 
 		Point3D {
 			x: self.x / other.x,
 			y: self.y / other.y,
 			z: self.z / other.z,
+		}
+	}
+}
+
+impl Div<f64> for Point3D {
+    type Output = Point3D;
+
+    fn div(self, other: f64) -> Point3D {
+        Point3D {
+            x: self.x / other,
+            y: self.y / other,
+            z: self.z / other,
+        }
+    }
+}
+
+
+impl Neg for Point3D {
+	type Output = Point3D;
+	fn neg(self) -> Point3D {
+		Point3D {
+			x: -self.x,
+			y: -self.y,
+			z: -self.z,
 		}
 	}
 }
